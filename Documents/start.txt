@@ -1,0 +1,5 @@
+
+//Générer une clé d'application 
+php artisan key:generate
+//Lancer le serveur de développement
+php artisan serve
