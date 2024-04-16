@@ -10,7 +10,7 @@ class RapportController extends Controller
     // Afficher le formulaire de création d'un rapport
     public function create()
     {
-        return view('rapports.create');
+        return view('rapports');
     }
 
     // Enregistrer un nouveau rapport dans la base de données

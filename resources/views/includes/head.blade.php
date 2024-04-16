@@ -11,5 +11,6 @@
             href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap"
             rel="stylesheet"/>
         <link rel="stylesheet" href="/css/main.css">
+        <link rel="shortcut icon" href="/src/Caduceus.png" type="image/x-icon">
         <!-- Styles -->
 </head>
