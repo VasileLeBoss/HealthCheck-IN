@@ -26,7 +26,9 @@ body {
 :root
 {
     --red:#ef4444;
+    --green:rgb(5, 165, 24);
     --main-color:#016FB9;
+    --disabled-button:#567285;
 }
 hr {
     height: 0;
@@ -85,6 +87,29 @@ table {
     text-indent: 0;
     border-color: inherit;
     border-collapse: collapse;
+    width: 100%;
+   
+}
+table th
+{
+    text-align: left;
+    color: var(--main-color);
+}
+table tr
+{
+   
+    width: 100%;
+    border-bottom: 1px solid white;
+    
+}
+table td
+{
+    padding-block: 0.4rem;
+    max-width: 100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-inline-end: 2rem;
 }
 button,
 input,
@@ -185,6 +210,10 @@ button {
 }
 :disabled {
     cursor: default;
+}
+button:disabled
+{
+    background-color:var(--disabled-button) ;
 }
 audio,
 canvas,
@@ -365,6 +394,9 @@ video {
 .mb-8 {
     margin-bottom: 2rem;
 }
+.mt-8 {
+    margin-top: 2rem;
+}
 .mt-16 {
     margin-top: 4rem;
 }
@@ -399,6 +431,10 @@ video {
 .grid {
     display: grid;
 }
+.grid-adress
+{
+    grid-template-columns: 1fr 0.5fr 0.25fr;
+}
 .span-2 {
     grid-column: span 2;
 }
@@ -424,6 +460,10 @@ video {
 }
 .w-auto {
     width: auto;
+}
+.w-250px
+{
+    width: 250px;
 }
 .w-300px
 {
@@ -470,6 +510,25 @@ video {
 .gap-4 {
     gap: 1rem;
 }
+.no-select
+{
+    user-select: none;
+}
+.rotate
+{
+    animation: rotate 5s linear infinite;
+}
+@keyframes rotate {
+    from {
+      transform: rotateY(0deg); /* Rotation de départ */
+    }
+    to {
+      transform: rotateY(360deg); /* Rotation de fin (360 degrés) */
+    }
+  }
+.self-align {
+    justify-self: center;
+}
 .self-center {
     align-self: center;
 }
@@ -490,6 +549,10 @@ video {
 .bg-white {
     --tw-bg-opacity: 1;
     background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+.color-green
+{
+color: var(--green);
 }
 .color-red
 {
@@ -607,6 +670,16 @@ body.accueil
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
 }
+
+.inver-color
+{
+   
+    
+   
+    opacity: 0.8;
+    filter: drop-shadow(0px 0px 5px rgba(34, 34, 34, 0.5)) invert(); 
+}
+
 .text-main-color
 {
     color:var(--main-color);
@@ -766,8 +839,14 @@ body.accueil
         grid-column: span 1;
     }
 
+
 }
 @media (min-width: 768px) {
+
+    .md\:grid-cols-2-image {
+        grid-template-columns: 1fr 0.50fr;
+    }
+
     .md\:grid-cols-2 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }

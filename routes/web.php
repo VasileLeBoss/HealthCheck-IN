@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,17 +37,18 @@ Route::get('/inscription', function () {
     }
 })->name('inscription');
 
+Route::get('/creation-rapport', [RapportController::class, 'create'])->middleware('auth')->name('creation-rapport');
+
+Route::post('/creation-rapport', [RapportController::class, 'store'])->middleware('auth');
 
 
-// Route::get('/login', function () { return view('welcome');})->name('login');
+Route::get('/accueil', [HomeController::class, 'index'])->middleware('auth')->name('accueil');
 
-// Route::get('/inscription', function () {
-//     return view('register');
-// })->name('inscription');
 
-Route::get('/accueil', function () {
-    return view('accueil');
-})->middleware('auth');
+Route::get('/mon-compte', function () {
+    return view('mon-compte');
+})->middleware('auth')->name('mon-compte');
+
 
 
 Route::post('/register', 'App\Http\Controllers\Auth\RegisterController@register')->name('register');
@@ -60,3 +61,7 @@ Route::post('/login', 'App\Http\Controllers\AuthController@login');
 
 // Déconnexion de l'utilisateur
 Route::post('/logout', 'App\Http\Controllers\AuthController@logout')->name('logout');
+
+Route::post('/profile/update', 'App\Http\Controllers\ProfileController@update')->name('profile.update');
+
+Route::post('/profile/update-password', 'App\Http\Controllers\ProfileController@updatePassword')->name('profile.update.mdp');

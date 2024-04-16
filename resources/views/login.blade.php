@@ -51,7 +51,8 @@
                                             id="login"
                                             type="email"
                                             placeholder="Email"
-                                            class="w-300px border-1px-solid-white"
+                                            class="w-300px border-1px-solid-white "
+                                            
                                             name="login"
                                             value="{{ old('login') }}"
                                             required="required"
