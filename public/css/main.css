@@ -140,6 +140,13 @@ button {
     background-color: var(--main-color);
     background-image: none;
 }
+option
+{
+
+    background-color: rgb(17 24 39 );
+    border: none;
+    border-radius:0.25rem !important ;
+}
 :-moz-focusring {
     outline: auto;
 }
@@ -583,6 +590,10 @@ color: var(--red);
 .stroke-gray-400 {
     stroke: #9ca3af;
 }
+.pt-6
+{
+    padding-top: 1.5rem;
+}
 .p-6 {
     padding: 1.5rem;
 }
@@ -637,9 +648,26 @@ color: var(--red);
 }
 body.accueil
 {
+    overflow-x: hidden;
     width: calc(100vw - 300px);
     margin-left: 300px;
 }
+
+
+::-webkit-scrollbar {
+    width: 10px; 
+}
+
+/* Autres styles de la barre de défilement */
+::-webkit-scrollbar-thumb {
+    background-color: rgba(50, 66, 97, 1); 
+
+}
+
+::-webkit-scrollbar-track {
+    background-color:  rgb(31, 43, 66); /* Couleur de fond de la barre de défilement */
+}
+
 .menu
 {
     position: fixed;
@@ -701,6 +729,10 @@ body.accueil
     color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.hover\:text-main-color:hover {
+    color: var(--main-color);
+}
+
 .hover\:text-red:hover {
     color: var(--red);
 }
@@ -734,6 +766,10 @@ body.accueil
 {
     overflow: hidden;
 }
+.capitalize {
+    text-transform: capitalize;
+}
+
 .new-mark::after
 {
     content: "NEW";

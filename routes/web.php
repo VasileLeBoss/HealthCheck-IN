@@ -40,7 +40,7 @@ Route::get('/inscription', function () {
 
 Route::get('/creation-rapport', [RapportController::class, 'create'])->middleware('auth')->name('creation-rapport');
 
-Route::post('/creation-rapport', [RapportController::class, 'store'])->middleware('auth');
+Route::post('/creation-rapport', 'App\Http\Controllers\RapportController@store')->middleware('auth')->name('new-rapport');
 
 
 Route::get('/accueil', [HomeController::class, 'index'])->middleware('auth')->name('accueil');

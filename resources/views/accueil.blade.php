@@ -7,7 +7,7 @@
 
         <div class="relative flex flex-column justify-between min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-main">
         <div>
-        <div class="p-6 flex justify-end">
+        <div class="px-6 pt-6 flex">
 
         <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Bienvenue, {{ auth()->user()->prenom }}</h2>
 
@@ -48,7 +48,7 @@
                     <h1 class="text-h1 mb-4">Mes Rapport</h1>
                         @if (!$rapports->isEmpty())
                         <h2>
-                            <a href="" ><span class="flex items-center"><ion-icon name="add-outline"></ion-icon>Nouveau Rapport</span></a>
+                            <a href="{{ route('creation-rapport') }}" class="hover:text-main-color" ><span class="flex items-center"><ion-icon name="add-outline"></ion-icon>Nouveau Rapport</span></a>
                         </h2>
                         @endif
                     </div>
@@ -67,9 +67,9 @@
                             </tr>
 
                                 @foreach ($rapports as $rapport)
-                                    <tr>
-                                        <td>{{ $rapport->date }}</td>
-                                        <td>{{ $rapport->idMedecin }}</td>
+                                    <tr class="capitalize">
+                                        <td>{{ $rapport->formatDate() }}</td>
+                                        <td>{{ $rapport->medecin->nom }} {{ $rapport->medecin->prenom }}</td>
                                         <td>{{ $rapport->motif }}</td>
                                         <td>{{ $rapport->bilan }}</td>
                                         
