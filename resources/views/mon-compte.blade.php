@@ -13,12 +13,9 @@
 
                     <div>
                         <h2 class="sm:logo-small font-semibold text-gray-900 dark:text-white">Mon Compte</h2>
-
                     </div>
-                    <div>
-                        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Bienvenue,
-                            {{ auth()->user()->prenom }}</h2>
-
+                    <div class="flex ">
+                    <a href="{{ route('desactiver-compte', ['id' => auth()->user()->id]) }}" class="self-center text-sm font-semibold color-red" onclick="return confirm('Êtes-vous sûr de vouloir désactiver votre compte?')">Désactiver mon compte</a>
                     </div>
                 </div>
                 <div class="grid md:grid-cols-2 gap-6 p-6">

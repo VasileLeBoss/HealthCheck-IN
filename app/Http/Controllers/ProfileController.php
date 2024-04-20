@@ -62,6 +62,18 @@ class ProfileController extends Controller
     
             return redirect()->back()->with('success-mdp', 'Le mot de passe a été modifié avec succès.');
         }
+
+        public function destroy($id)
+        {
+            // Recherche l'utilisateur à supprimer
+            $user = Visiteur::findOrFail($id);
+
+            // Supprimer l'utilisateur
+            $user->delete();
+
+            // Redirigez l'utilisateur vers une page de confirmation 
+            return redirect()->route('accueil')->with('success', 'Votre compte a été désactivé avec succès.');
+        }
     
     
     

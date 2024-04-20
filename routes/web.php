@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RapportController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MedicamentsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,12 +47,18 @@ Route::post('/creation-rapport', 'App\Http\Controllers\RapportController@store')
 
 Route::get('/accueil', [HomeController::class, 'index'])->middleware('auth')->name('accueil');
 
+Route::get('/medicaments', [MedicamentsController::class, 'view'])->middleware('auth')->name('medicaments');
+
 
 Route::get('/mon-compte', function () {
     return view('mon-compte');
 })->middleware('auth')->name('mon-compte');
 
+Route::get('/rapport-modif', [RapportController::class, 'view'])->middleware('auth')->name('rapport-modif');
 
+Route::put('/rapport/{id}', [RapportController::class, 'update'])->middleware('auth')->name('update-rapport');
+
+Route::delete('/rapport/{id}', [RapportController::class, 'destroy'])->name('delete-rapport');
 
 Route::post('/register', 'App\Http\Controllers\Auth\RegisterController@register')->name('register');
 
@@ -66,3 +74,6 @@ Route::post('/logout', 'App\Http\Controllers\AuthController@logout')->name('logo
 Route::post('/profile/update', 'App\Http\Controllers\ProfileController@update')->name('profile.update');
 
 Route::post('/profile/update-password', 'App\Http\Controllers\ProfileController@updatePassword')->name('profile.update.mdp');
+
+Route::get('/compte/{id}', [ProfileController::class, 'destroy'])->name('desactiver-compte');
+

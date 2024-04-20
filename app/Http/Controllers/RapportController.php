@@ -19,6 +19,72 @@ class RapportController extends Controller
         return view('rapports', compact('medecins', 'medicaments'));
     }
 
+    public function view(Request $request)
+    {
+        $id = $request->query('id');
+
+        // Vérifier si le rapport existe et s'il appartient à l'utilisateur authentifié
+        $rapport = Rapport::findOrFail($id);
+
+        if ($rapport->visiteur_id !== auth()->id()) {
+            return redirect()->route('creation-rapport')->with('error', 'Vous n\'êtes pas autorisé à accéder à ce rapport.');
+        }
+
+        //$medecins = Medecin::all();
+        $medecins = Medecin::find($rapport->idMedecin);
+        
+        // Récupérer les données de liaison entre le rapport et le médicament
+        $offrir = Offrir::where('idRapport', $rapport->id)->first();
+
+        // Récupérer le médicament lié au rapport
+        $medicaments = ($offrir) ? $offrir->medicament : null;
+
+        return view('rapport-modif', compact('rapport', 'medecins', 'medicaments'));
+    }
+
+    public function update(Request $request, $id)
+{
+    // Valider les données du formulaire
+    $request->validate([
+        'motif' => 'required|string',
+        'bilan' => 'required|string'
+    ]);
+
+    // Récupérer le rapport
+    $rapport = Rapport::findOrFail($id);
+
+    // Vérifier si le rapport appartient à l'utilisateur authentifié
+    if ($rapport->visiteur_id !== auth()->id()) {
+        return redirect()->route('creation-rapport')->with('error', 'Vous n\'êtes pas autorisé à modifier ce rapport.');
+    }
+
+    // Mettre à jour les données du rapport
+    $rapport->motif = $request->motif;
+    $rapport->bilan = $request->bilan;
+    $rapport->save();
+
+    return redirect()->route('rapport-modif', ['id' => $rapport->id])->with('success', 'Rapport modifié avec succès.');
+}
+
+public function destroy($id)
+{
+    $rapport = Rapport::findOrFail($id);
+    
+    // Vérifier si le rapport appartient à l'utilisateur authentifié
+    if ($rapport->visiteur_id != auth()->id()) {
+        return back()->with('error', 'Vous n\'êtes pas autorisé à supprimer ce rapport.');
+    }
+    
+    // Supprimer le rapport
+    $rapport->delete();
+
+    // Redirection avec un message de succès
+    return redirect()->route('creation-rapport')->with('success', 'Rapport supprimé avec succès.');
+}
+
+
+
+
     // Enregistrer un nouveau rapport dans la base de données
     public function store(Request $request)
     {
@@ -55,7 +121,7 @@ class RapportController extends Controller
             }
         } catch (Exception $e) {
             // Gérer l'exception ici
-            return redirect()->route('creation-rapport')->with('error', 'Une erreur est survenue lors de la création du rapport : ' . $e->getMessage());
+            return redirect()->route('creation-rapport')->with('error', 'Une erreur est survenue lors de la création du rapport ');
         }
     }
 }

@@ -23,7 +23,7 @@
                             @endif
                             @if (session('error'))
                             <div class="mt-4">
-                            <span class="color-green ">{{ session('error') }}</span>
+                            <span class="color-red ">{{ session('error') }}</span>
                             </div>
                                 
                             @endif 
@@ -39,7 +39,7 @@
                                 <div class="grid md:grid-cols-2 gap-6 ">
                                         <div>
                                             <label for="medecin">Médecin</label>
-                                           <select class="border-1px-solid-white" name="medecin" id="medecin">
+                                           <select class="border-1px-solid-white" name="medecin" id="medecin" required>
                                            @foreach ($medecins as $medecin)
                                                 <option value="{{ $medecin->id}}">{{ $medecin->nom}} {{ $medecin->prenom}}</option>
 
@@ -49,23 +49,23 @@
                                         <div class="flex gap-4">
                                             <div>
                                             <label for="medicament">Médicament</label>
-                                           <select class="border-1px-solid-white" name="medicament" id="medicament">
+                                           <select class="border-1px-solid-white" name="medicament" id="medicament" required>
                                            @foreach ($medicaments as $medicament)
-                                                <option value="{{ $medicament->id}}">{{ $medicament->nomCommercial}}</option>
+                                                <option value="{{ $medicament->id}}" >{{ $medicament->nomCommercial}}</option>
                                             @endforeach
                                            </select> 
                                             </div>
                                            <div>
                                            <label for="quantite">Quantité</label>
-                                           <input class="border-1px-solid-white" type="number" min="1" name="quantite">
+                                           <input class="border-1px-solid-white" type="number" min="1" name="quantite" required>
                                            </div>
                                         </div>
                                     </div>
                             </div>
                             <div class="mt-4">
-                                    <label for="bilan">Billan</label>
+                                    <label for="bilan">Bilan</label>
                                     <textarea class="border-1px-solid-white"  name="bilan" id="bilan" cols="30" rows="10" required></textarea>
-                                </div>
+                            </div>
 
                                 <button type="submit" class="w-max mt-4" id="submit-btn-mdp">
                                     Créer un nouveau rapport

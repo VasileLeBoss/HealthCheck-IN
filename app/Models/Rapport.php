@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Medecin;
 use App\Models\Visiteur;
+use App\Models\Offrir;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 
 class Rapport extends Model
 {
     use HasFactory;
+
 
     protected $fillable = [
         'date',
@@ -30,6 +32,12 @@ class Rapport extends Model
         return $this->belongsTo(Medecin::class, 'idMedecin');
     }
 
+    public function offrir()
+    {
+        return $this->hasMany(Offrir::class, 'idRapport');
+    }
+    
+
 
     public function visiteur()
     {
@@ -46,5 +54,9 @@ class Rapport extends Model
 
         // Formater la date au format JJ/MM/AAAA en français
         return $carbonDate->isoFormat('DD/MMMM/YYYY');
+    }
+        public function medicament()
+    {
+        return $this->belongsTo(Medicament::class, 'idMedicament');
     }
 }

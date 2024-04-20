@@ -28,4 +28,6 @@ class Offrir extends Model
     {
         return $this->belongsTo(Medicament::class, 'idMedicament');
     }
+    
+    
 }

@@ -431,6 +431,12 @@ video {
 .flex-column
 {
     flex-direction: column;
+    
+}
+.self-flex-end
+{
+    align-self: flex-end;
+
 }
 .inline-flex {
     display: inline-flex;
